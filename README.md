@@ -1,2 +1,2 @@
 # Assigment2_DATA
-Orbasker/
+school project for first REST API using MongoDB

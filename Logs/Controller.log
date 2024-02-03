@@ -1,0 +1,99 @@
+error: 1/27/2024, 12:42:26 AM : 400 Bad Request, inventory is not defined,
+                {
+                        Body: {
+    "name": "test ssdd4s7",
+    "quantity": "66",
+    "price": "55"
+    
+}, 
+                        }
+error: 1/27/2024, 12:42:33 AM : 400 Bad Request, inventory is not defined,
+                {
+                        Body: {
+    "name": "test ssdd4sdfdfdf7",
+    "quantity": "66",
+    "price": "55"
+    
+}, 
+                        }
+info: 1/27/2024, 12:45:02 AM : Item: [object Object] returned from the inventory!
+info: 1/27/2024, 12:46:20 AM : Items returned from the inventory!
+info: 1/27/2024, 12:46:27 AM : Item has been updated in the inventory!
+                {
+                      Name: test new 2, 
+                      Quantity: quantity test 3546445, 
+                      Price: 5992
+                      }
+error: 1/27/2024, 12:46:35 AM : 400 Bad Request, Item not found
+info: 1/27/2024, 12:46:57 AM : test ssd7 Item has been deleted from the inventory!
+info: 1/27/2024, 12:47:26 AM : test ssddd7 Item has been deleted from the inventory!
+info: 1/27/2024, 4:16:31 PM : Items returned from the inventory!
+info: 1/27/2024, 4:17:38 PM : Item: [object Object] returned from the inventory!
+info: 1/27/2024, 4:19:30 PM : New Item has been added to the inventory!
+                {
+                      Body: {
+    "name": "test",
+    "quantity": "66",
+    "price": "55"
+    
+}, 
+                      }
+error: 1/27/2024, 4:20:40 PM : 400 Bad Request, Item not found,
+                {
+                        Name: {
+    "name": "test 2",
+    "quantity": "123",
+    "price": "5992"
+},
+                      }
+info: 1/27/2024, 4:20:44 PM : Item has been updated in the inventory!
+                {
+                      Name: test, 
+                      Quantity: 123, 
+                      Price: 5992
+                      }
+info: 1/27/2024, 4:21:46 PM : test Item has been deleted from the inventory!
+info: 2/1/2024, 11:55:20 AM : Items returned from the inventory!
+info: 2/1/2024, 11:56:47 AM : Items returned from the inventory!
+info: 2/1/2024, 11:59:37 AM : Items returned from the inventory!
+info: 2/1/2024, 11:59:58 AM : Items returned from the inventory!
+info: 2/1/2024, 12:00:02 PM : Items returned from the inventory!
+info: 2/1/2024, 12:00:26 PM : Items returned from the inventory!
+info: 2/1/2024, 12:00:28 PM : Items returned from the inventory!
+info: 2/1/2024, 12:00:47 PM : Item: [object Promise] returned from the inventory!
+info: 2/1/2024, 4:51:01 PM : Item: null returned from the inventory!
+info: 2/1/2024, 4:51:14 PM : Items returned from the inventory!
+info: 2/1/2024, 4:52:51 PM : Items returned from the inventory!
+info: 2/1/2024, 4:52:52 PM : Item: null returned from the inventory!
+info: 2/1/2024, 4:54:52 PM : Item: null returned from the inventory!
+info: 2/1/2024, 4:54:53 PM : Item: null returned from the inventory!
+error: 2/1/2024, 5:55:56 PM : Error adding supply:
+error: 2/1/2024, 5:58:42 PM : Error adding supply:
+error: 2/1/2024, 6:00:05 PM : Error adding supply:
+error: 2/1/2024, 6:01:49 PM : Error adding supply:
+error: 2/1/2024, 6:01:56 PM : Error adding supply:
+error: 2/1/2024, 6:09:13 PM : Error getting supply:
+error: 2/1/2024, 6:09:22 PM : Error getting supply:
+error: 2/1/2024, 9:20:10 PM : Error getting supply:
+error: 2/1/2024, 9:20:21 PM : Error getting supply:
+error: 2/1/2024, 9:20:21 PM : Error getting supply:
+error: 2/1/2024, 9:20:33 PM : Error getting supply:
+error: 2/1/2024, 9:20:33 PM : Error getting supply:
+error: 2/1/2024, 9:20:33 PM : Error adding supply:
+error: 2/1/2024, 9:21:48 PM : Error getting supply:
+error: 2/1/2024, 9:21:48 PM : Error getting supply:
+error: 2/1/2024, 9:21:48 PM : Error adding supply:
+error: 2/1/2024, 9:22:02 PM : Error getting supply:
+error: 2/1/2024, 9:22:02 PM : Error getting supply:
+error: 2/1/2024, 9:23:01 PM : Error getting supply:
+error: 2/1/2024, 9:23:02 PM : Error getting supply:
+error: 2/1/2024, 9:23:20 PM : Error getting supply:
+error: 2/1/2024, 9:23:20 PM : Error getting supply:
+error: 2/1/2024, 9:23:20 PM : Error adding supply:
+error: 2/1/2024, 9:23:44 PM : Error getting supply:
+error: 2/1/2024, 9:23:44 PM : Error getting supply:
+error: 2/1/2024, 9:23:44 PM : Error adding supply:
+error: 2/1/2024, 9:25:24 PM : Error getting supply:
+error: 2/1/2024, 9:25:24 PM : Error getting supply:
+error: 2/1/2024, 9:29:04 PM : Error getting supply:
+error: 2/1/2024, 9:29:04 PM : Error getting supply:
