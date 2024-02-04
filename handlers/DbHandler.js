@@ -20,6 +20,10 @@ class DbHandler {
     })
   }
 
+  destroy () {
+    this.disconnect()
+  }
+
   async connect () {
     try {
       await mongoose.connect(this.url, {

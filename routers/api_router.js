@@ -10,9 +10,9 @@ apiRouter.get('/', async (req, res) => {
   logger.log('Request received: /getItems')
   try {
     const result = await controller.handleGetItems(req, res)
-    res.send(result)
+    res.json({succuess: 'Items found', result})
   } catch (error) {
-    res.status(404).send('Items not found')
+    res.status(404).json({error :'Items not found'})
   }
 })
 
@@ -21,12 +21,12 @@ apiRouter.get('/:name', async (req, res) => {
   logger.log('Request received: /getItem')
   try {
     const result = await controller.handleGetItem(req.params.name)
-    res.send(result)
+    res.json({succuess: 'Item found', result})
   } catch (error) {
     if (error.message.includes('Name not found')) {
-      res.status(404).send('Item not found')
+      res.status(404).json({error: 'Item not found'})
     } else {
-      res.status(500).send('Item not found but not due to error on your side')
+      res.status(500).json({error:'Item not found but not due to error on your side'})
     }
   }
 })
@@ -38,12 +38,12 @@ apiRouter.post('/', async (req, res) => {
   const postBody = req.body
   try {
     const result = await controller.handleAddItem(postBody)
-    res.send(result)
+    res.json({succuess: "Item has been added",result})
   } catch (error) {
     if (error.message.includes('duplicate key')) {
-      res.status(409).send('Item already exists')
+      res.status(409).json({error:'Item already exists'})
     } else {
-      res.status(500).send('Item not added due to error on our side')
+      res.status(500).json({error: 'Item not added due to error on our side'})
     }
   }
 })
@@ -54,12 +54,12 @@ apiRouter.put('/', async (req, res) => {
 
   try {
     const result = await controller.handleUpdateItem(req.body)
-    res.send(result)
+    res.json({succuess: "Item has been updated",result})
   } catch (error) {
     if (error.message.includes('Name not found')) {
-      res.status(404).send('Item not found')
+      res.status(404).json({error: 'Item not found'})
     }
-    res.status(500).send('Item not updated')
+    res.status(500).json({error: 'Item not updated'})
   }
 })
 
@@ -69,12 +69,12 @@ apiRouter.delete('/:name', async (req, res) => {
   try {
     const result = await controller.handleDeleteItem(req.params.name)
     if (result == null) {
-      res.status(404).send('Item not found')
+      res.status(404).json({error:'Item not found'})
     } else {
-      res.send(result)
+      res.json({succuess: "Item has been deleted",result})
     }
   } catch (error) {
-    res.status(500).send('Item not deleted')
+    res.status(500).json({error:'Item not deleted'})
   }
 }
 )
