@@ -1,6 +1,5 @@
 .env
 .eslintrc.yml
-.pre-commit-config.yaml
 jest.config.js
 node_modules
 package-lock.json

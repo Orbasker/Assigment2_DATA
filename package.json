@@ -4,6 +4,11 @@
       "pre-commit": "npm run pre-commit"
     }
   },
+  "lint-staged": {
+    "*.{js,jsx}": [
+      "eslint . --fix"
+    ]
+  },
   "dependencies": {
     "body-parser": "^1.20.2",
     "dotenv": "^16.4.1",
@@ -35,7 +40,7 @@
     "supertest": "^6.3.4"
   },
   "scripts": {
-    "lint": "eslint . --fix",
+    "lint": "eslint . --ext .js,.jsx",
     "test": "mocha '__tests__/**/*.js' --exit",
     "start": "node server.js",
     "precommit": "pre-commit run",
