@@ -1,7 +1,7 @@
 {
   "husky": {
     "hooks": {
-      "pre-commit": "lint-staged"
+      "pre-commit": "npm run pre-commit"
     }
   },
   "lint-staged": {
@@ -44,7 +44,7 @@
     "lint": "eslint . --fix",
     "test": "mocha '__tests__/**/*.js' --exit",
     "start": "node server.js",
-    "pre-commit": "pre-commit run --all-files",
+    "pre-commit": "lint-staged",
     "pretteier": "prettier --write ."
   }
 }
