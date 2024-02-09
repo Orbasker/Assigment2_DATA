@@ -1,31 +1,31 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose')
 // sourcery skip: use-object-destructuring
-const Schema = mongoose.Schema;
+const Schema = mongoose.Schema
 
 const EmergenctSupplySchema = new Schema(
   {
     name: {
       type: String,
       unique: true,
-      required: true,
+      required: true
     },
     quantity: {
       type: Number,
       min: 0,
-      required: true,
+      required: true
     },
     price: {
       type: Number,
       min: 0,
-      required: true,
-    },
+      required: true
+    }
   },
-  { versionKey: false },
-);
+  { versionKey: false }
+)
 
 const EmergenctSupply = mongoose.model(
-  "EmergencySupply",
-  EmergenctSupplySchema,
-);
+  'EmergencySupply',
+  EmergenctSupplySchema
+)
 
-module.exports = EmergenctSupply;
+module.exports = EmergenctSupply

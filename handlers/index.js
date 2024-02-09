@@ -1,5 +1,5 @@
-const { DbHandler } = require("./DbHandler");
+const { DbHandler } = require('./DbHandler')
 
 module.exports = {
-  DbHandler,
-};
+  DbHandler
+}

@@ -1,5 +1,5 @@
-const emergencySupply = require("./EmergencySupply");
+const emergencySupply = require('./EmergencySupply')
 
 module.exports = {
-  emergencySupply,
-};
+  emergencySupply
+}
