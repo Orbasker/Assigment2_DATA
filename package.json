@@ -46,5 +46,9 @@
     "start": "node server.js",
     "pre-commit": "pre-commit run --all-files",
     "pretteier": "prettier --write ."
-  }
+  },
+  "pre-commit": [
+    "lint",
+    "test"
+  ]
 }
