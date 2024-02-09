@@ -4,15 +4,6 @@
       "pre-commit": "npm run pre-commit"
     }
   },
-  "lint-staged": {
-    "*.{js,jsx}": [
-      "prettier --write",
-      "eslint --fix"
-    ],
-    "*.{html,css,less,ejs}": [
-      "prettier --write"
-    ]
-  },
   "dependencies": {
     "body-parser": "^1.20.2",
     "dotenv": "^16.4.1",
@@ -44,7 +35,8 @@
     "lint": "eslint . --fix",
     "test": "mocha '__tests__/**/*.js' --exit",
     "start": "node server.js",
-    "pre-commit": "lint-staged",
+    "pre-commit": "pre-commit run --all-files",
     "pretteier": "prettier --write ."
   }
+  
 }
