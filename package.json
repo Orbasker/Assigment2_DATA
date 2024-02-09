@@ -36,7 +36,7 @@
     "lint": "eslint . --fix",
     "test": "mocha '__tests__/**/*.js' --exit",
     "start": "node server.js",
-    "pre-commit": "pre-commit run --all-files",
+    "precommit": "pre-commit run",
     "pretteier": "prettier --write .",
     "prepare": "husky"
   }

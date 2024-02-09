@@ -48,6 +48,4 @@ The server provides the following endpoints for managing emergency supplies. The
 - `PUT /supplies/:name`: Update an existing emergency supply record by name.
 - `DELETE /supplies/:name`: Delete an emergency supply record by name.
 
-
 For detailed usage and examples, refer to the [Postman collection](https://www.postman.com/technical-explorer-46268065/workspace/or-basker-api-s/collection/28337524-61e532b4-e30a-42f6-b92b-8b837ebf2c11).
-
