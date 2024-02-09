@@ -37,6 +37,7 @@
     "test": "mocha '__tests__/**/*.js' --exit",
     "start": "node server.js",
     "pre-commit": "pre-commit run --all-files",
-    "pretteier": "prettier --write ."
+    "pretteier": "prettier --write .",
+    "prepare": "husky"
   }
 }
