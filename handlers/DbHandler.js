@@ -1,43 +1,30 @@
 const mongoose = require('mongoose')
-const EmergencySupply = require('../models/EmergenctSupply')
-const logger = require('../logger')
+const EmergencySupply = require('../models/EmergencySupply')
+const logger = require('../logger/logger')
 require('dotenv').config()
 
 class DbHandler {
   constructor (loggerFilepath) {
+    this.schema = EmergencySupply
+    this.logger = new logger.Logger(loggerFilepath)
+    this.url = this.constructConnectionString()
+    this.connect()
+  }
+
+  constructConnectionString () {
     const username = encodeURIComponent(process.env.MONGO_USERNAME)
     const password = encodeURIComponent(process.env.MONGO_PASSWORD)
     const cluster = process.env.MONGO_CLUSTER
     const dbname = process.env.MONGO_DBNAME
     const host = process.env.MONGO_HOST
-    this.schema = EmergencySupply
-    this.logger = new logger.Logger(loggerFilepath)
-    this.url = `mongodb+srv://${username}:${password}@${cluster}.${host}${dbname}`
-    this.connection = mongoose.connection
-    this.connection.once('open', () => {
-      this.logger.log('MongoDB database connection established successfully.')
-      console.log('MongoDB database connection established successfully.')
-    })
-  }
-
-  destroy () {
-    this.disconnect()
+    return `mongodb+srv://${username}:${password}@${cluster}.${host}${dbname}?retryWrites=true&w=majority`
   }
 
   async connect () {
-    try {
-      await mongoose.connect(this.url, {
-      })
-      this.connection.once('open', () => {
-        this.logger.log('Connected to MongoDB database.')
-        console.log('Connected to MongoDB database.')
-        this.db = this.connection.db
-      })
-    } catch (error) {
-      this.logger.error('Error connecting to MongoDB:', error.message)
-      console.error('Error connecting to MongoDB:', error.message)
-      // throw error;
-    }
+    this.logger.log('Connecting to MongoDB database...')
+    await mongoose.connect(this.url)
+    console.log('Connected to MongoDB database.')
+    this.logger.log('Connected to MongoDB database.')
   }
 
   async getSupplies () {
@@ -82,7 +69,7 @@ class DbHandler {
     }
   }
 
-  async updateSupply (supply) {
+  async updateSupply (name, supply) {
     try {
       this.logger.log('Updating supply...', {
         name: supply.name,
@@ -94,7 +81,7 @@ class DbHandler {
         quantity: supply.quantity,
         price: supply.price
       })
-      return await this.schema.findOneAndUpdate({ name: supply.name }, supply, { new: false })
+      return await this.schema.findOneAndUpdate({ name }, supply, { new: false })
     } catch (error) {
       this.logger.error('Error updating supply:', error.message)
       console.error('Error updating supply:', error.message)
@@ -123,13 +110,6 @@ class DbHandler {
       throw error
     }
   }
-
-  async disconnect () {
-    if (this.connection.readyState === mongoose.ConnectionStates.connected) {
-      await mongoose.disconnect()
-      console.log('Disconnected from MongoDB database.')
-    }
-  }
 }
 
-module.exports = DbHandler
+module.exports = { DbHandler }

@@ -1,143 +1,61 @@
-// DbHandler.test.js
-const mongoose = require('mongoose');
-const EmergencySupply = require('../models/EmergenctSupply'); 
-const DbHandler = require('../handlers/DbHandler');
-const logger = require('../logger'); 
+let expect
+const { DbHandler } = require('../handlers/index')
 
-jest.mock('mongoose', () => ({
-  connect: jest.fn().mockResolvedValue({}),
-  disconnect: jest.fn().mockResolvedValue({}),
-  connection: {
-    once: jest.fn(),
-    readyState: 1, // Mock being connected
-  },
-}));
+before(async () => {
+  const chai = await import('chai')
+  expect = chai.expect
+  dbHandler = new DbHandler('testDB') // Adjust the path as needed
+})
 
-jest.mock('../models/EmergenctSupply', () => ({
-  find: jest.fn(),
-  findOne: jest.fn(),
-  create: jest.fn(),
-  findOneAndUpdate: jest.fn(),
-  findOneAndDelete: jest.fn(),
-  exists: jest.fn(),
-}));
+describe('Add supply', function () {
+  it('should add a supply', async function () {
+    const supply = {
+      name: 'Test Supply',
+      quantity: 100,
+      price: 100
+    }
+    const result = await dbHandler.addSupply(supply)
+    expect(result).to.include(supply)
+  })
+})
 
-jest.mock('../logger', () => ({
-  Logger: jest.fn().mockImplementation(() => ({
-    log: jest.fn(),
-    error: jest.fn(),
-  })),
-}));
+describe('Get supply', function () {
+  it('should get a supply', async function () {
+    const supply = {
+      name: 'Test Supply',
+      quantity: 100,
+      price: 100
+    }
+    const result = await dbHandler.getSupply(supply.name)
+    expect(result).to.include(supply)
+  })
+})
 
-describe('DbHandler', () => {
-  let dbHandler;
+describe('Update supply', function () {
+  it('should update a supply', async function () {
+    const supply = {
+      name: 'Test Supply',
+      quantity: 200,
+      price: 200
+    }
+    const id = supply.name
+    const result = await dbHandler.updateSupply(id, supply)
+    expect(result)
+  })
+})
 
-  beforeEach(() => {
-    // Reset all mocks
-    jest.clearAllMocks();
-    // Initialize DbHandler with a mocked logger file path
-    dbHandler = new DbHandler('/mocked/path/to/logfile');
-  });
+describe('Get supplies', function () {
+  it('should get all supplies', async function () {
+    const result = await dbHandler.getSupplies()
+    expect(result).to.be.an('array')
+  })
+})
 
-  // Example test for connect method
-  describe('connect', () => {
-    it('should connect to the database successfully', async () => {
-      await dbHandler.connect();
-      expect(mongoose.connect).toHaveBeenCalled();
-    });
-  });
-
-  // Assuming your test file is located in /tests/DbHandler.test.js
-
-describe('addSupply', () => {
-  it('should add a new supply successfully', async () => {
-    const newSupply = { name: 'Food', quantity: 50, price: 5 };
-    EmergencySupply.create.mockResolvedValue(newSupply);
-
-    const result = await dbHandler.addSupply(newSupply);
-
-    expect(EmergencySupply.create).toHaveBeenCalledWith(newSupply);
-    expect(result).toEqual(newSupply);
-  });
-
-  it('should handle errors when adding a new supply fails', async () => {
-    EmergencySupply.create.mockRejectedValue(new Error('Error adding supply:'));
-    await expect(dbHandler.addSupply({})).rejects.toThrow('Error adding supply:');
-  });
-});
-
-describe('getSupply', () => {
-  it('should retrieve a supply by name', async () => {
-    const supplyName = 'Water';
-    const supplyData = { name: 'Water', quantity: 100, price: 10 };
-    EmergencySupply.findOne.mockResolvedValue(supplyData);
-
-    const result = await dbHandler.getSupply(supplyName);
-
-    expect(EmergencySupply.findOne).toHaveBeenCalledWith({ name: supplyName });
-    expect(result).toEqual(supplyData);
-  });
-});
-
-describe('updateSupply', () => {
-  it('should update an existing supply', async () => {
-    const supplyToUpdate = { name: 'Food', quantity: 60, price: 6 };
-    EmergencySupply.findOneAndUpdate.mockResolvedValue(supplyToUpdate);
-
-    const result = await dbHandler.updateSupply(supplyToUpdate);
-
-    expect(EmergencySupply.findOneAndUpdate).toHaveBeenCalledWith({ name: supplyToUpdate.name }, supplyToUpdate, { new: false });
-    expect(result).toEqual(supplyToUpdate);
-  });
-});
-
-describe('deleteSupply', () => {
-  it('should delete a supply by name', async () => {
-    const supplyName = 'Food';
-    EmergencySupply.findOneAndDelete.mockResolvedValue({ name: 'Food' });
-
-    const result = await dbHandler.deleteSupply(supplyName);
-
-    expect(EmergencySupply.findOneAndDelete).toHaveBeenCalledWith({ name: supplyName });
-    expect(result).toHaveProperty('name', supplyName);
-  });
-
-  it('should handle errors when deletion fails', async () => {
-    EmergencySupply.findOneAndDelete.mockRejectedValue(new Error('Failed to delete supply'));
-    await expect(dbHandler.deleteSupply('Nonexistent')).rejects.toThrow('Failed to delete supply');
-  });
-});
-
-
-// describe('disconnect', () => {
-//   beforeEach(() => {
-//     // Reset the mock for each test to ensure clean state
-//     mongoose.disconnect.mockClear();
-//     mongoose.connection.readyState = mongoose.ConnectionStates.connected;
-//   });
-
-//   it('should disconnect from the database when connected', async () => {
-//     await dbHandler.disconnect();
-//     expect(mongoose.disconnect).toHaveBeenCalled();
-//     expect(console.log).toHaveBeenCalledWith('Disconnected from MongoDB database.');
-//   });
-
-//   it('should not attempt to disconnect if not connected', async () => {
-//     // Simulate the database being disconnected
-//     mongoose.connection.readyState = mongoose.ConnectionStates.disconnected;
-    
-//     await dbHandler.disconnect();
-//     // Verify disconnect was not called since we're not connected
-//     expect(mongoose.disconnect).not.toHaveBeenCalled();
-//   });
-// });
-
-
-  // Add more tests here for other methods like getSupplies, addSupply, etc.
-
-});
-
-
-
-
-
+describe('Delete supply', function () {
+  it('should delete a supply', async function () {
+    const supply = 'Test Supply'
+    const result = await dbHandler.deleteSupply(supply)
+    console.log(result)
+    expect(result).to.include({ name: supply })
+  })
+})

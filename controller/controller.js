@@ -1,10 +1,9 @@
-const DBHandler = require('../handlers/DbHandler')
-const logger = require('../logger')
+const DBHandler = require('../handlers/index')
+const logger = require('../logger/index')
 
 class Controller {
   constructor (loggerFilepath) {
-    this.inventory = new DBHandler('DB logs')
-    this.inventory.connect()
+    this.inventory = new DBHandler.DbHandler('DB logs')
     this.logger = new logger.Logger(loggerFilepath)
   }
 
@@ -44,12 +43,12 @@ class Controller {
     }
   }
 
-  async handleUpdateItem (supply) {
+  async handleUpdateItem (name, supply) {
     try {
-      if (await this.inventory.exists(supply.name) === false) {
+      if (await this.inventory.exists(name) === false) {
         throw new Error('Name not found')
       }
-      return await this.inventory.updateSupply(supply)
+      return await this.inventory.updateSupply(name, supply)
     } catch (error) {
       this.logger.error('Error updating supply:', error.message)
       console.error('Error updating supply:', error.message)

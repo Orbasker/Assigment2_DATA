@@ -5,11 +5,18 @@ env:
   jest: true
 extends:
   - standard
-  - plugin:react/recommended
 parserOptions:
   ecmaVersion: latest
 plugins:
-  - react
+  - jest
+  - standard
+  - mocha
+  - chai
+  - node
+  - promise
+  - import
+  
+  
 rules: {}
 overrides:
   - files:
@@ -17,5 +24,8 @@ overrides:
       - "**/*.spec.js"
     excludedFiles:
       - "*.temp.js"
+globals:
+  dbHandler: true
+  before: true
     
     
