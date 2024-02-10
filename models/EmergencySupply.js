@@ -1,8 +1,6 @@
 const mongoose = require("mongoose");
-// sourcery skip: use-object-destructuring
-const Schema = mongoose.Schema;
 
-const EmergenctSupplySchema = new Schema(
+const EmergenctSupplySchema = new mongoose.Schema(
   {
     name: {
       type: String,
